@@ -1,0 +1,8 @@
+- name: navigation.courses
+  link:
+    fr: https://courses.bdura.me
+    en: https://courses.bdura.me
+- name: navigation.recipes
+  link:
+    fr: https://recettes.bdura.me
+    en: https://recettes.bdura.me/en/

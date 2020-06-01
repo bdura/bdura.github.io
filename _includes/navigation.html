@@ -1,0 +1,29 @@
+<nav>
+	{% for link in site.data.navigation %}
+	{% assign class = "" %}
+
+		{% if link.link == page.url %}
+			{% assign class = class | append: " active" %}
+		{% endif %}
+		<a href="{% include relative-src.html src=link.link %}" class="{{ class }}">
+			{% t link.name %}
+		</a>
+	{% endfor %}
+
+	{% for link in site.data.outnavigation %}
+		{% assign class = "" %}
+
+		{% capture l %}
+			{%if site.lang == 'fr' %}
+				{{ link.link.fr }}
+			{% else %}
+				{{ link.link.en }}
+			{% endif %}
+		{% endcapture %}
+
+		<a href="{{ l }}" class="{{ class }}">
+			{% t link.name %}
+		</a>
+	{% endfor %}
+
+</nav>

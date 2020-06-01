@@ -1,0 +1,29 @@
+site:
+  name: Basile Dura
+  description: Basile Dura
+
+navigation:
+  about: À propos
+  home: Accueil
+  themes: Thèmes
+  courses: Cours
+  recipes: Recettes
+
+footer:
+  theme: Adapté d'un thème
+  resume: Télécharger mon CV
+
+error:
+  title: Page introuvable
+  message: Cette page n'existe pas...
+
+categories:
+  economy: Economie
+  data: Données
+  maths: Mathématiques
+  ai: Intelligence artificielle
+  pharma: Pharmacie
+
+post:
+  header:
+    readmore: En savoir plus

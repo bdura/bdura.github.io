@@ -1,0 +1,33 @@
+site:
+  name: Basile Dura
+  description: Basile Dura
+
+titles:
+  about: About
+  recipes: All our recipes
+
+navigation:
+  about: About
+  home: Home
+  themes: Themes
+  courses: Courses
+  recipes: Recipes
+
+footer:
+  theme: Adapted from a theme by
+  resume: Download my resume
+
+error:
+  title: Page not found
+  message: The page does not exist...
+
+categories:
+  economy: Economy
+  data: Data
+  maths: Mathematics
+  ai: Artificial intelligence
+  pharma: Drug discovery
+
+post:
+  header:
+    readmore: Learn more

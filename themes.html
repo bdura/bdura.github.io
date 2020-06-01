@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+{% tf themes.md %}
+
+{% for category in site.categories %}
+	<div class="category">
+		<h2>{% t categories.{{ category[0] }} %}</h2>
+		<div class="recipes row">
+			{% for post in category[1] %}
+				<div class="recipe" style="background-image: url('{{ post.image }}')">
+					<a href="{{ site.baseurl }}{{ post.url }}"><span>{{ post.title }}</span></a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endfor %}

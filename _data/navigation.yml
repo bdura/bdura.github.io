@@ -1,0 +1,6 @@
+- name: navigation.home
+  link: /
+- name: navigation.themes
+  link: /themes/
+- name: navigation.about
+  link: /about/
