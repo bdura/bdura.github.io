@@ -1,5 +1,1 @@
-# Education
 
-## Polytechnique
-
-Haha
