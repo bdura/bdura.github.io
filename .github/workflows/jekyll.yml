@@ -12,23 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository 📂
+      - name: Checkout repository 🛎️
         uses: actions/checkout@v2
+
+      - name: Prepare assets directory 📂
+        run: |
+          mkdir assets/files/
+
+      - name: Get PDF files ⬇️
+        uses: wei/wget@v1
+        with:
+          args: -P assets/files/ https://github.com/bdura/resume/raw/resume/Basile%20Dura%20Resume.pdf https://github.com/bdura/invivo-report/raw/report/Meta-learning%20for%20drug%20discovery.pdf
 
       - name: Build the site with Jekyll 🧪
         run: |
           docker run -v ${{ github.workspace }}:/website \
           --rm basiledura/jekyll:latest \
           bundle exec jekyll build
-
-      - name: Prepare assets directory 📂
-        run: |
-          mkdir _site/assets/files/
-
-      - name: Get PDF files ⬇️
-        uses: wei/wget@v1
-        with:
-          args: -P _site/assets/files/ https://github.com/bdura/resume/raw/resume/Basile%20Dura%20Resume.pdf https://github.com/bdura/invivo-report/raw/report/Meta-learning%20for%20drug%20discovery.pdf
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
