@@ -1,10 +1,13 @@
 {% assign figure_counter = figure_counter | plus: 1 %}
-<figure class="figure">
+<figure class="figure ided text-center" id='figure{{ figure_counter }}'>
   <a data-toggle="modal" data-target="#figureModal{{ figure_counter }}">
   <img src="{{ include.source }}" class="figure-img img-fluid" alt="{{ include.caption }}">
   </a>
   {% if include.caption %}
-    <figcaption class="figure-caption text-center">Figure {{ figure_counter }}: {{ include.caption }}</figcaption>
+    <figcaption class="figure-caption text-center">
+      Figure {{ figure_counter }}: {{ include.caption }}
+      {% if include.reference %}{% cite include.reference %}{% endif %}
+    </figcaption>
   {% endif %}
 </figure>
 
@@ -21,7 +24,9 @@
     <figure class="figure">
       <img src="{{ include.source }}" class="figure-img img-fluid" alt="{{ include.caption }}">
       {% if include.caption %}
-        <figcaption class="figure-caption text-center">Figure {{ figure_counter }}: {{ include.caption }}</figcaption>
+        <figcaption class="figure-caption text-center">
+          Figure {{ figure_counter }}: {{ include.caption }}
+        </figcaption>
       {% endif %}
     </figure>
   </div>
