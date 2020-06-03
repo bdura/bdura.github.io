@@ -8,6 +8,11 @@
 
   <title>Basile Dura</title>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -20,10 +25,236 @@
   <!-- Icon -->
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
 
+  <link rel="stylesheet"
+      href="/assets/css/prism.css">
+  <script src="/assets/js/prism.js"></script>
+
 </head>
 
 
 	<body>
+
+		<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  	tex2jax: {
+  		inlineMath: [['$','$']],
+  		displayMath: [['$$', '$$']],
+  		processEscapes: true,
+  	},
+  	TeX: {
+  	  equationNumbers: {
+  	    autoNumber: "AMS"
+  	  }
+  	},
+  	CommonHTML: {
+  		styles: {
+  		  ".MathJax_Display": {
+  		    "margin-top": "0",
+  				"margin-bottom": "1rem"
+  		  },
+  		  ".MJXc-display": {
+  		    "margin-top": "0",
+  				"margin-bottom": "1rem"
+  		  }
+  		}
+  	},
+  	"HTML-CSS": {
+  		styles: {
+  		  ".MathJax_Display": {
+  		    "margin-top": "0",
+  				"margin-bottom": "1rem"
+  		  },
+  		  ".MJXc-display": {
+  		    "margin-top": "0",
+  				"margin-bottom": "1rem"
+  		  }
+  		}
+  	}
+  });
+</script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script> -->
+
+<div style="display:none">
+  
+  $$
+  \newcommand{\indic}{\mathbbm{1}}
+
+  \newcommand{\argmax}{\operatorname*{arg\,max}}
+  \newcommand{\argmin}{\operatorname*{arg\,min}}
+  \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+  \newcommand{\Var}{\mathbb{V}\textrm{ar}}
+  \newcommand{\Cov}{\mathbb{C}\textrm{ov}}
+
+  \newcommand{\Id}{\bm{\textrm{Id}}}
+
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\N}{\mathbb{N}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\Q}{\mathbb{Q}}
+  \newcommand{\Z}{\mathbb{Z}}
+
+  \newcommand{\LP}{\left(}
+  \newcommand{\RP}{\right)}
+  \newcommand{\LB}{\left[}
+  \newcommand{\RB}{\right]}
+  \newcommand{\LC}{\left\{}
+  \newcommand{\RC}{\right\}}
+  \newcommand{\RM}{\right|}
+  \newcommand{\LM}{\left|}
+  \newcommand{\MM}{\middle|}
+
+  \renewcommand{\P}{\mathbb{P}}
+
+  \newcommand{\define}{\stackrel{\mathrm{def}}{=}}
+  \newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+
+  \newcommand{\rfrac}[2]{{}^{#1}\!/_{#2}}
+
+  \newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+
+  \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{exercise}[2][Exercise]{
+  \begin{trivlist}\pdfbookmark{#1 #2}{#1-#2}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}\vspace{5mm}}
+  \newenvironment{question}[2][Question]{
+  \begin{trivlist}\pdfbookmark{#1 #2}{#1-#2}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}\vspace{5mm}}
+  \newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+  % Integral 'd'
+  \def\diff{{\mathrm{d}}}
+
+  % Vectors
+  \def\vzero{{\bm{0}}}
+  \def\vone{{\bm{1}}}
+  \def\vmu{{\bm{\mu}}}
+  \def\vtheta{{\bm{\theta}}}
+  \def\va{{\bm{a}}}
+  \def\vb{{\bm{b}}}
+  \def\vc{{\bm{c}}}
+  \def\vd{{\bm{d}}}
+  \def\ve{{\bm{e}}}
+  \def\vf{{\bm{f}}}
+  \def\vg{{\bm{g}}}
+  \def\vh{{\bm{h}}}
+  \def\vi{{\bm{i}}}
+  \def\vj{{\bm{j}}}
+  \def\vk{{\bm{k}}}
+  \def\vl{{\bm{l}}}
+  \def\vm{{\bm{m}}}
+  \def\vn{{\bm{n}}}
+  \def\vo{{\bm{o}}}
+  \def\vp{{\bm{p}}}
+  \def\vq{{\bm{q}}}
+  \def\vr{{\bm{r}}}
+  \def\vs{{\bm{s}}}
+  \def\vt{{\bm{t}}}
+  \def\vu{{\bm{u}}}
+  \def\vv{{\bm{v}}}
+  \def\vw{{\bm{w}}}
+  \def\vx{{\bm{x}}}
+  \def\vy{{\bm{y}}}
+  \def\vz{{\bm{z}}}
+
+  % Matrix
+  \def\mA{{\bm{A}}}
+  \def\mB{{\bm{B}}}
+  \def\mC{{\bm{C}}}
+  \def\mD{{\bm{D}}}
+  \def\mE{{\bm{E}}}
+  \def\mF{{\bm{F}}}
+  \def\mG{{\bm{G}}}
+  \def\mH{{\bm{H}}}
+  \def\mI{{\bm{I}}}
+  \def\mJ{{\bm{J}}}
+  \def\mK{{\bm{K}}}
+  \def\mL{{\bm{L}}}
+  \def\mM{{\bm{M}}}
+  \def\mN{{\bm{N}}}
+  \def\mO{{\bm{O}}}
+  \def\mP{{\bm{P}}}
+  \def\mQ{{\bm{Q}}}
+  \def\mR{{\bm{R}}}
+  \def\mS{{\bm{S}}}
+  \def\mT{{\bm{T}}}
+  \def\mU{{\bm{U}}}
+  \def\mV{{\bm{V}}}
+  \def\mW{{\bm{W}}}
+  \def\mX{{\bm{X}}}
+  \def\mY{{\bm{Y}}}
+  \def\mZ{{\bm{Z}}}
+  \def\mBeta{{\bm{\beta}}}
+  \def\mPhi{{\bm{\Phi}}}
+  \def\mLambda{{\bm{\Lambda}}}
+  \def\mSigma{{\bm{\Sigma}}}
+
+  % Caligraphy
+  \def\calA{{\mathcal{A}}}
+  \def\calB{{\mathcal{B}}}
+  \def\calC{{\mathcal{C}}}
+  \def\calD{{\mathcal{D}}}
+  \def\calE{{\mathcal{E}}}
+  \def\calF{{\mathcal{F}}}
+  \def\calG{{\mathcal{G}}}
+  \def\calH{{\mathcal{H}}}
+  \def\calI{{\mathcal{I}}}
+  \def\calJ{{\mathcal{J}}}
+  \def\calK{{\mathcal{K}}}
+  \def\calL{{\mathcal{L}}}
+  \def\calM{{\mathcal{M}}}
+  \def\calN{{\mathcal{N}}}
+  \def\calO{{\mathcal{O}}}
+  \def\calP{{\mathcal{P}}}
+  \def\calQ{{\mathcal{Q}}}
+  \def\calR{{\mathcal{R}}}
+  \def\calS{{\mathcal{S}}}
+  \def\calT{{\mathcal{T}}}
+  \def\calU{{\mathcal{U}}}
+  \def\calV{{\mathcal{V}}}
+  \def\calW{{\mathcal{W}}}
+  \def\calX{{\mathcal{X}}}
+  \def\calY{{\mathcal{Y}}}
+  \def\calZ{{\mathcal{Z}}}
+
+  \def\normal{{\mathcal{N}}}
+
+  \newcommand{\Dtrain}{{D_{\mathrm{train}}}}
+  \newcommand{\Dvalid}{{D_{\mathrm{valid}}}}
+  \newcommand{\Dtest}{{D_{\mathrm{test}}}}
+
+  \newcommand{\Dtraint}{{D_{\mathrm{train}}^t}}
+  \newcommand{\Dvalidt}{{D_{\mathrm{valid}}^t}}
+  \newcommand{\Dtestt}{{D_{\mathrm{test}}^t}}
+
+  \newcommand{\Dmeta}{{\mathcal{D}^\mathrm{meta}}}
+  \newcommand{\Dmtrain}{{\mathcal{D}_\mathrm{train}^\mathrm{meta}}}
+  \newcommand{\Dmvalid}{{\mathcal{D}_\mathrm{valid}^\mathrm{meta}}}
+  \newcommand{\Dmtest}{{\mathcal{D}_\mathrm{test}^\mathrm{meta}}}
+
+  \newcommand{\Dsupport}{{D_{\mathrm{support}}^t}}
+  \newcommand{\Dquery}{{D_{\mathrm{query}}^t}}
+
+  \newcommand{\loss}{\ell}
+  \newcommand{\metaloss}{\mathcal{L}}
+
+  \newcommand{\kr}{\mathrm{KR}}
+  \newcommand{\kernel}{\mathrm{k}}
+  \newcommand{\km}{\mathbf{K}}
+  $$
+  
+</div>
+
 
 		<nav>
 	
@@ -67,7 +298,7 @@
 		</a>
 	
 
-	
+	<!-- 
 		
 
 		
@@ -91,28 +322,59 @@
 		" class="">
 			Recettes
 		</a>
-	
+	 -->
+
+	<div class="dropdown">
+  <a class=" dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Autre
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+		
+			
+
+			
+
+			<a href="
+				
+					https://courses.bdura.me
+				
+			" class="dropdown-item ">
+				Cours
+			</a>
+		
+			
+
+			
+
+			<a href="
+				
+					https://recettes.bdura.me
+				
+			" class="dropdown-item ">
+				Recettes
+			</a>
+		
+  </div>
+</div>
 
 </nav>
 
 
 		<div class="container main-content">
 
-			<header>
+			<!-- <header>
 	<div class="text-center">
 		<a href="/fr">
 			<img src="/assets/images/author.png" alt="logo" style="border-radius: 50%;">
 		</a>
 	</div>
+</header> -->
 
-</header>
+<div class="row">
+	<div class="col-12 col-lg-2"></div>
 
-
-	<div class="row">
-		<div class="col-12 col-lg-2"></div>
-
-		<div class="col-12 col-lg-8">
-			<section class="content"><style type="text/css" media="screen">
+	<div class="col-12 col-lg-8">
+		<section class="content"><style type="text/css" media="screen">
   .container {
     margin: 10px auto;
     max-width: 600px;
@@ -133,11 +395,11 @@
   <p>Cette page n'existe pas...</p>
 </div>
 </section>
-		</div>
-
-		<div class="col-12 col-lg-2"></div>
-
 	</div>
+
+	<div class="col-12 col-lg-2"></div>
+
+</div>
 
 
 		</div>
@@ -147,7 +409,7 @@
     <hr>
 
     <div class="pdf-link">
-      <a href="/assets/files/Basile%20Dura%20Resume.pdf">Télécharger mon CV</a>
+      <a href="/assets/files/Basile%20Dura%20Resume.pdf">Mon CV</a>
     </div>
 
     &copy; Basile Dura  2020. Adapté d'un thème

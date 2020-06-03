@@ -6,9 +6,23 @@ nav a.active { color: #888; }
 
 nav a:hover { color: #000; text-decoration: none; }
 
+ol.bibliography li span { margin-top: -70px; padding-top: 70px; }
+
+.ided { margin-top: -70px; padding-top: 70px; }
+
+.vertically-centered { position: relative; top: 50%; transform: translateY(-50%); }
+
+.modal-body { padding: 0; }
+
+.modal-backdrop { opacity: 0.8 !important; }
+
+.modal figcaption { color: white; }
+
 html, body { padding: 0; margin: 0; line-height: 1.8em; }
 
 body, input, textarea { font-family: 'Fira Sans', sans-serif; color: #222; -webkit-font-smoothing: antialiased; }
+
+div.main-content { padding-top: 80px; }
 
 h1 { font-size: 1.8em; margin: 0; padding: 0; line-height: 1.3em; font-weight: bold; }
 
@@ -18,9 +32,11 @@ h4 { font-size: 1.2em; margin-bottom: .5em; }
 
 time { color: #999; }
 
-header { text-align: center; padding: 80px 0 60px 0; }
+header { text-align: center; padding-bottom: 40px; }
 
 img { max-width: 100%; }
+
+figure.full { width: 100vw; margin-left: 50%; transform: translateX(-50%); }
 
 ol li + li { margin: 20px 0 0 0; }
 
@@ -29,6 +45,8 @@ footer { color: #999; text-align: center; padding: 20px 0; font-size: .8em; }
 hr { border: 0; border-top: 1px solid #eee; }
 
 a { text-decoration: none; color: #007eff; }
+
+pre[class*="language-"] { border-radius: 6px; }
 
 header img { max-width: 180px; }
 
@@ -45,28 +63,6 @@ header img { max-width: 180px; }
 .post .post-header .source a { color: #999; }
 
 .post .post-header .source a:hover { color: black; text-decoration: none; }
-
-.post .recipe-overview { padding: 0; margin: 0; }
-
-.post .recipe-overview svg { position: relative; top: 0px; }
-
-.post .recipe-overview span { margin: 0 18px 0 3px; }
-
-.post .recipe-overview li { list-style: none; padding: 0; margin: 0; }
-
-.post .recipe-contents ul { padding: 0; }
-
-.post .recipe-contents ul li { list-style-type: none; }
-
-.post .recipe-contents ul li:before { content: '\00bb'; color: #ff4e4e; padding-right: 0.5em; }
-
-.post .recipe-contents ol { padding: 0; }
-
-.post .recipe-contents ol li { counter-increment: step-counter; list-style-type: none; position: relative; margin-left: 34px; }
-
-.post .recipe-contents ol li:before { content: counter(step-counter); margin-right: 0px; background-color: #ff4e4e; font-weight: bold; color: white; /* padding: 1px 7px; */ font-size: .8em; position: absolute; left: -34px; top: 0px; width: 25px; text-align: center; }
-
-.post .recipe-contents .ingredients { width: 250px; padding: 0 43px 0 0; }
 
 .post + .post { margin: 40px 0 50px 0; }
 
@@ -118,21 +114,19 @@ select { width: 100%; padding: 20px; height: 43px; background: #fff; border-colo
 
 select:focus { outline: 2px solid #333; }
 
-.recipe-contents { margin-top: 1em; }
+.post-body { padding-top: 1em; }
 
-#recipe { margin-top: -40px; padding-top: 70px; }
+.theme { display: flex; flex-wrap: wrap; }
 
-.recipe-body { padding-top: 1em; }
+.theme .post { flex: 1 0 300px; height: 200px; display: inline-block; background-position: center; background-size: cover; margin: 5px 5px; }
 
-.recipes { display: flex; flex-wrap: wrap; }
+.theme .post a { width: 100%; height: 100%; display: block; background: rgba(0, 0, 0, 0.2); color: #fff; text-decoration: none; text-align: center; vertical-align: text-bottom; position: relative; transition: all 0.2s ease; font-size: 1.1em; font-weight: 700; }
 
-.recipes .recipe { flex: 1 0 300px; height: 200px; display: inline-block; background-position: center; background-size: cover; margin: 5px 5px; }
+.theme .post a span { position: absolute; bottom: 5px; width: 100%; left: 0; text-shadow: 1px 1px 1px #000; }
 
-.recipes .recipe a { width: 100%; height: 100%; display: block; background: rgba(0, 0, 0, 0.2); color: #fff; text-decoration: none; text-align: center; vertical-align: text-bottom; position: relative; transition: all 0.2s ease; font-size: 1.1em; font-weight: 700; }
+.theme .post a:hover { background: none; }
 
-.recipes .recipe a span { position: absolute; bottom: 5px; width: 100%; left: 0; text-shadow: 1px 1px 1px #000; }
-
-.recipes .recipe a:hover { background: none; }
+a.ref:hover { color: black; text-decoration: none; }
 
 .category { margin-top: 1em; }
 

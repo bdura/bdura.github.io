@@ -1,12 +1,12 @@
 <!doctype html>
 
-<html lang="fr">
+<html lang="en">
 
 	<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Basile Dura</title>
+  <title>Basile Dura — Meta-learning for drug discovery</title>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script type="text/javascript" id="MathJax-script" async
@@ -264,11 +264,11 @@
 		<a href="
 
 
-  /fr
+  
 
 /
-" class=" active">
-			Accueil
+" class="">
+			Home
 		</a>
 	
 	
@@ -277,11 +277,11 @@
 		<a href="
 
 
-  /fr
+  
 
 /themes/
 " class="">
-			Thèmes
+			Themes
 		</a>
 	
 	
@@ -290,11 +290,11 @@
 		<a href="
 
 
-  /fr
+  
 
 /about/
 " class="">
-			À propos
+			About
 		</a>
 	
 
@@ -308,7 +308,7 @@
 				https://courses.bdura.me
 			
 		" class="">
-			Cours
+			Courses
 		</a>
 	
 		
@@ -317,16 +317,16 @@
 
 		<a href="
 			
-				https://recettes.bdura.me
+				https://recettes.bdura.me/en/
 			
 		" class="">
-			Recettes
+			Recipes
 		</a>
 	 -->
 
 	<div class="dropdown">
   <a class=" dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Autre
+    Other
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu">
 		
@@ -339,7 +339,7 @@
 					https://courses.bdura.me
 				
 			" class="dropdown-item ">
-				Cours
+				Courses
 			</a>
 		
 			
@@ -348,10 +348,10 @@
 
 			<a href="
 				
-					https://recettes.bdura.me
+					https://recettes.bdura.me/en/
 				
 			" class="dropdown-item ">
-				Recettes
+				Recipes
 			</a>
 		
   </div>
@@ -364,7 +364,7 @@
 
 			<!-- <header>
 	<div class="text-center">
-		<a href="/fr">
+		<a href="">
 			<img src="/assets/images/author.png" alt="logo" style="border-radius: 50%;">
 		</a>
 	</div>
@@ -375,6 +375,181 @@
 
 	<div class="col-12 col-lg-8">
 		<section class="content">
+
+
+<article class="post">
+
+	<div class="post-header">
+	<h1>
+		<a href="/2020/02/29/meta-learning-for-drug-discovery/">
+			Meta-learning for drug discovery
+		</a>
+	</h1>
+	<time datetime="2020-02-29 00:00:00 +0000">
+		<!-- February 29, 2020 -->
+		February 29, 2020
+	</time>
+</div>
+
+
+	<div class="image">
+		<img src="https://source.unsplash.com/0tfz7ZoXaWc" alt="Meta-learning for drug discovery" class="img-fluid">
+	</div>
+
+	<div class="post-body">
+		<p>This post presents the report I wrote to finalise an internship at <a href="https://invivoai.com/">InVivo AI</a>, a Montréal-based startup aiming to bring few-shot learning to drug discovery.</p>
+
+<p>You can find the full report <a href="/assets/files/Meta-learning for drug discovery.pdf">here</a>. It is divided into four parts:</p>
+
+<ol>
+  <li>
+    <p>First, I give a succinct presentation of a typical drug discovery pipeline and discuss how machine-learning could help, as well as propose a set of desiderata for a drug-discovery algorithm.</p>
+  </li>
+  <li>
+    <p>Then, I look at how traditional machine-learning has started to yield some results.</p>
+  </li>
+  <li>
+    <p>Third, I argue that given the scarcity and noise of training data, the answer may lie in learning from multiple tasks and present a relatively new machine-learning paradigm, namely <em>meta-learning</em>.</p>
+  </li>
+  <li>
+    <p>Finally, I describe one particular project that I worked on during the internship, namely “Adaptive Deep Kernel Learning”, a method we proposed to address the desiderata formulated to work with molecular data.</p>
+  </li>
+</ol>
+
+<h2 id="drug-discovery">Drug discovery</h2>
+
+<p>Drug discovery is the process of finding novel compounds apt to act on a specific target in order to stop, treat and cure a disease.</p>
+
+<figure class="figure ided text-center" id="figure1">
+  <a data-toggle="modal" data-target="#figureModal1">
+  <img src="/assets/images/invivo/drug-discovery.jpg" class="figure-img img-fluid" alt="The traditional drug discovery pipeline" />
+  </a>
+  
+    <figcaption class="figure-caption text-center">
+      Figure 1: The traditional drug discovery pipeline
+      <a class="citation" href="#janssen2019">(Janssen, 2019)</a>
+    </figcaption>
+  
+</figure>
+
+<div class="modal align-items-center show" id="figureModal1" tabindex="-1">
+
+  <div class="text-right fixed-top">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+      <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
+    </button>
+  </div>
+
+  <div class="modal-body vertically-centered">
+    <figure class="figure">
+      <img src="/assets/images/invivo/drug-discovery.jpg" class="figure-img img-fluid" alt="The traditional drug discovery pipeline" />
+      
+        <figcaption class="figure-caption text-center">
+          Figure 1: The traditional drug discovery pipeline
+        </figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+<p>As <a href="#figure1" class="ref">figure 1</a>
+ shows, the search begins with a long and tedious process of <em>in vitro</em> testing on as many as 10 000 to 15 000 candidate molecular compounds.</p>
+
+<p>At the end of that step, which lasts three to six years, only a handful of compounds move on to the next phase. In many ways, this step is akin to looking for a needle in a haystack: although the process can be guided by some form of empirical knowledge, the latter is vastly insufficient to reduce the duration of the pre-clinical phase by any significant amount.</p>
+
+<p>From there, another six to seven years of human clinical trials are necessary to validate the effects of the retained compounds.</p>
+
+<h2 id="computational-drug-discovery">Computational drug discovery</h2>
+
+<p>Computational drug discovery can be summarised into three distinct but coupled problems:</p>
+
+<ol>
+  <li>
+    <p><strong>Scoring</strong>. “Scoring” a molecule, or estimating its properties, is the first building block of an artificial intelligence that can help discover new drugs.</p>
+  </li>
+  <li>
+    <p><strong>Generation</strong>. There are an estimated 10<sup>60</sup> possible small molecules
+<a class="citation" href="#chemicalspace">(Bohacek et al., 1996)</a>, while the largest molecular databases hold at most a hundred millions of them…</p>
+  </li>
+  <li>
+    <p><strong>Optimisation</strong>. Combining a good generation strategy to efficiently explore the space of small molecules and an accurate scoring function, we may one day be able to optimise for compounds directly: given a set of desirable properties, the algorithm would propose candidates that are designed to perform best.</p>
+  </li>
+</ol>
+
+<p>We can define a few desiderata for a good machine-learning algorithm for drug discovery :</p>
+<ul>
+  <li><strong>Representation</strong>, to get the most information.</li>
+  <li><strong>Extrapolation</strong>, to be able to score significantly different compounds.</li>
+  <li><strong>Data efficiency</strong>, given the dire scarcity of training examples.</li>
+  <li><strong>Calibration</strong>, to be able to assess the level of confidence on the model’s predictions.</li>
+</ul>
+
+<h2 id="meta-learning">Meta-learning</h2>
+
+<p>Note that the traditional machine-learning objective is in the form:
+\begin{equation}
+  \argmin_\theta \metaloss (\Dtrain \mid \theta) = \argmin_\theta \E_{x, y \in \Dtrain} \LB \loss (y, f_\theta(x)_t) \RB
+\end{equation}</p>
+
+<p>where \(\loss\) is the loss function, \(f_\theta\) is the model parametrised by \(\theta\), \(x\) is the input and \(y\) is the target.</p>
+
+<p>A new range of algorithms has been developed in recent years in order to tackle the issue of generalising from very few examples. The paradigm, called meta-learning, aims at “learning to learn” from a collection of machine-learning problems that share a substantial amount of structure, by designing the objective function in such a way that the algorithm is explicitly trained to learn faster.</p>
+
+<p>Instead of minimising the average loss on a set of individual examples, the meta-learning objective aims to minimise the average generalisation error on a set of training tasks. More formally, the meta-learning objective is in the form:
+\begin{equation}
+  \label{eq:maml}
+  \argmin_\theta \E_{t \in \Dmtrain} \LB \metaloss (\Dquery \mid \theta, \Dsupport) \RB
+\end{equation}</p>
+
+<p>Where \(t\) is a task from \(\Dmtrain\), the <em>meta-training set</em>. Each task comes with <em>support</em> and <em>query</em> sets, corresponding to the training and validation sets in the traditional setting.</p>
+
+<figure class="figure ided text-center" id="figure2">
+  <a data-toggle="modal" data-target="#figureModal2">
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vTmM4I87M3EzlrnEvEqAEfyj5qf4s-GhXqMORuEHkNENLijSotokbB0mmKlGpDtImGXv0xPMGsrpc__/pub?w=584&amp;h=537" class="figure-img img-fluid" alt="The meta-training loop" />
+  </a>
+  
+    <figcaption class="figure-caption text-center">
+      Figure 2: The meta-training loop
+      
+    </figcaption>
+  
+</figure>
+
+<div class="modal align-items-center show" id="figureModal2" tabindex="-1">
+
+  <div class="text-right fixed-top">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+      <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
+    </button>
+  </div>
+
+  <div class="modal-body vertically-centered">
+    <figure class="figure">
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vTmM4I87M3EzlrnEvEqAEfyj5qf4s-GhXqMORuEHkNENLijSotokbB0mmKlGpDtImGXv0xPMGsrpc__/pub?w=584&amp;h=537" class="figure-img img-fluid" alt="The meta-training loop" />
+      
+        <figcaption class="figure-caption text-center">
+          Figure 2: The meta-training loop
+        </figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+	</div>
+
+	
+
+	
+		<h2>References</h2>
+
+		<ol class="bibliography"><li><span id="janssen2019">Janssen. (2019). <i>Addressing The Challenges Of Drug Discovery</i>. Janssen. https://www.janssen.com/emea/drug-discovery</span></li>
+<li><span id="chemicalspace">Bohacek, R. S., McMartin, C., &amp; Guida, W. C. (1996). The art and practice of structure-based drug design: A molecular modeling perspective. <i>Medicinal Research Reviews</i>, <i>16</i>(1), 3–50.</span></li></ol>
+	
+
+
+
+</article>
 </section>
 	</div>
 
@@ -390,25 +565,25 @@
     <hr>
 
     <div class="pdf-link">
-      <a href="/assets/files/Basile%20Dura%20Resume.pdf">Mon CV</a>
+      <a href="/assets/files/Basile%20Dura%20Resume.pdf">My résumé</a>
     </div>
 
-    &copy; Basile Dura  2020. Adapté d'un thème
+    &copy; Basile Dura  2020. Adapted from a theme by
     <a href="https://github.com/CloudCannon/treat-jekyll-template" target="_blank" rel="noopener">CloudCannon</a>.
 
     <div class="language-switch">
       
         
-          
-            <a href="/">en</a>
-          
+          <a href="#" class="active">en</a>
         
         
             •
         
       
         
-          <a href="#" class="active">fr</a>
+          
+            <a href="/fr/2020/02/29/meta-learning-for-drug-discovery/">fr</a>
+          
         
         
       
