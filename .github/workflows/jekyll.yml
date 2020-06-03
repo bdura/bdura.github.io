@@ -24,16 +24,6 @@ jobs:
         with:
           args: -P assets/files/ https://github.com/bdura/resume/raw/resume/Basile%20Dura%20Resume.pdf https://github.com/bdura/invivo-report/raw/report/Meta-learning%20for%20drug%20discovery.pdf
 
-      - name: Docker login
-        run: echo '${{ secrets.DOCKER_TOKEN }}' | docker login --username basiledura --password-stdin
-
-      - name: Docker build
-        run: |
-          docker build -t basiledura/jekyll:latest .
-
-      - name: Docker push
-        run: docker push basiledura/jekyll:latest
-
       - name: Build the site with Jekyll 🧪
         run: |
           docker run -v ${{ github.workspace }}:/website \
