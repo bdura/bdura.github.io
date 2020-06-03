@@ -72,3 +72,7 @@ a {
 	text-decoration: none;
 	color: #007eff;
 }
+
+pre[class*="language-"] {
+  border-radius: 6px;
+}
