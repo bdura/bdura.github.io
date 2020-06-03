@@ -12,10 +12,11 @@ navigation:
   themes: Themes
   courses: Courses
   recipes: Recipes
+  other: Other
 
 footer:
   theme: Adapted from a theme by
-  resume: Download my resume
+  resume: My résumé
 
 error:
   title: Page not found

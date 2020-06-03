@@ -51,6 +51,7 @@ defaults:
 plugins:
   - jekyll-paginate
   - jekyll-multiple-languages-plugin
+  - jekyll-scholar
 
 exclude:
   - Gemfile

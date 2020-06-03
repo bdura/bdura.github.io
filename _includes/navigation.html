@@ -10,7 +10,7 @@
 		</a>
 	{% endfor %}
 
-	{% for link in site.data.outnavigation %}
+	<!-- {% for link in site.data.outnavigation %}
 		{% assign class = "" %}
 
 		{% capture l %}
@@ -24,6 +24,29 @@
 		<a href="{{ l }}" class="{{ class }}">
 			{% t link.name %}
 		</a>
-	{% endfor %}
+	{% endfor %} -->
+
+	<div class="dropdown">
+  <a class="{{ class }} dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% t navigation.other %}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+		{% for link in site.data.outnavigation %}
+			{% assign class = "" %}
+
+			{% capture l %}
+				{%if site.lang == 'fr' %}
+					{{ link.link.fr }}
+				{% else %}
+					{{ link.link.en }}
+				{% endif %}
+			{% endcapture %}
+
+			<a href="{{ l }}" class="dropdown-item {{ class }}">
+				{% t link.name %}
+			</a>
+		{% endfor %}
+  </div>
+</div>
 
 </nav>

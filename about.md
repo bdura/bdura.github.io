@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: headed
 ---
 
 {% tf about.md %}

@@ -8,10 +8,11 @@ navigation:
   themes: Thèmes
   courses: Cours
   recipes: Recettes
+  other: Autre
 
 footer:
   theme: Adapté d'un thème
-  resume: Télécharger mon CV
+  resume: Mon CV
 
 error:
   title: Page introuvable

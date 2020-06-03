@@ -10,6 +10,10 @@ body, input, textarea {
 	-webkit-font-smoothing: antialiased;
 }
 
+div.main-content {
+	padding-top: 80px
+}
+
 h1 {
 	font-size: 1.8em;
 	margin: 0;
@@ -35,7 +39,7 @@ time {
 
 header {
 	text-align: center;
-	padding: 80px 0 60px 0;
+	padding-bottom: 40px;
 }
 
 img {
