@@ -4,3 +4,23 @@ ol.bibliography {
     padding-top: 70px;
   }
 }
+
+.vertically-centered {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.modal-body {
+    padding: 0;
+}
+
+
+.modal-backdrop
+{
+    opacity:0.8 !important;
+}
+
+.modal figcaption {
+  color: white;
+}
