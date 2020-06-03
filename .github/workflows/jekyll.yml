@@ -26,9 +26,10 @@ jobs:
 
       - name: Build the site with Jekyll 🧪
         run: |
-          docker run -v ${{ github.workspace }}:/website \
-          --rm basiledura/jekyll:latest \
-          bundle exec jekyll build
+          docker run --rm \
+            --volume="$PWD:/srv/jekyll" \
+            -it jekyll/builder:latest \
+            jekyll build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
