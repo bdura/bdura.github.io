@@ -2,6 +2,9 @@
 layout: default
 ---
 
+{% assign figure_counter = 0 %}
+{% assign table_counter = 0 %}
+
 <article class="post">
 
 	{% include post-heading.html post=page post_page=true %}
@@ -10,8 +13,18 @@ layout: default
 		<img src="{{ page.image }}" alt="{{ page.title }}" class="img-fluid">
 	</div>
 
-	<div class="recipe-body">
+	<div class="post-body">
 		{{ content }}
 	</div>
+
+	{% capture bibliography_count %}{% bibliography_count --cited%}{% endcapture %}
+
+	{% if bibliography_count != '0'%}
+		<h2>References</h2>
+
+		{% bibliography --cited %}
+	{% endif %}
+
+
 
 </article>
