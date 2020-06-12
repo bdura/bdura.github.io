@@ -49,11 +49,11 @@
   	CommonHTML: {
   		styles: {
   		  ".MathJax_Display": {
-  		    "margin-top": "0",
+  		    "margin-top": "2rem",
   				"margin-bottom": "1rem"
   		  },
   		  ".MJXc-display": {
-  		    "margin-top": "0",
+  		    "margin-top": "2rem",
   				"margin-bottom": "1rem"
   		  }
   		}
@@ -61,11 +61,11 @@
   	"HTML-CSS": {
   		styles: {
   		  ".MathJax_Display": {
-  		    "margin-top": "0",
+  		    "margin-top": "2rem",
   				"margin-bottom": "1rem"
   		  },
   		  ".MJXc-display": {
-  		    "margin-top": "0",
+  		    "margin-top": "2rem",
   				"margin-bottom": "1rem"
   		  }
   		}
@@ -486,20 +486,30 @@
 
 <h2 id="meta-learning">Meta-learning</h2>
 
-<p>Note that the traditional machine-learning objective is in the form:
-\begin{equation}
-  \argmin_\theta \metaloss (\Dtrain \mid \theta) = \argmin_\theta \E_{x, y \in \Dtrain} \LB \loss (y, f_\theta(x)_t) \RB
-\end{equation}</p>
+<p>Note that the traditional machine-learning objective is in the form:</p>
+
+<div class="equation">
+  \begin{equation}
+    
+\argmin_\theta \metaloss (\Dtrain \mid \theta) = \argmin_\theta \E_{x, y \in \Dtrain} \LB \loss (y, f_\theta(x)_t) \RB
+
+  \end{equation}
+</div>
 
 <p>where \(\loss\) is the loss function, \(f_\theta\) is the model parametrised by \(\theta\), \(x\) is the input and \(y\) is the target.</p>
 
 <p>A new range of algorithms has been developed in recent years in order to tackle the issue of generalising from very few examples. The paradigm, called meta-learning, aims at “learning to learn” from a collection of machine-learning problems that share a substantial amount of structure, by designing the objective function in such a way that the algorithm is explicitly trained to learn faster.</p>
 
-<p>Instead of minimising the average loss on a set of individual examples, the meta-learning objective aims to minimise the average generalisation error on a set of training tasks. More formally, the meta-learning objective is in the form:
-\begin{equation}
+<p>Instead of minimising the average loss on a set of individual examples, the meta-learning objective aims to minimise the average generalisation error on a set of training tasks. More formally, the meta-learning objective is in the form:</p>
+
+<div class="equation">
+  \begin{equation}
+    
   \label{eq:maml}
   \argmin_\theta \E_{t \in \Dmtrain} \LB \metaloss (\Dquery \mid \theta, \Dsupport) \RB
-\end{equation}</p>
+
+  \end{equation}
+</div>
 
 <p>Where \(t\) is a task from \(\Dmtrain\), the <em>meta-training set</em>. Each task comes with <em>support</em> and <em>query</em> sets, corresponding to the training and validation sets in the traditional setting.</p>
 

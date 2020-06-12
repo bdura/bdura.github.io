@@ -144,4 +144,6 @@ footer a:hover { color: black; text-decoration: none; }
 
 footer .pdf-link { float: left; }
 
+.equation { overflow-x: scroll; display: block; }
+
 /*# sourceMappingURL=screen.css.map */
