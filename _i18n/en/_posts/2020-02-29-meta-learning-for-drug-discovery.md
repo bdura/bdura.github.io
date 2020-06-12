@@ -53,19 +53,20 @@ We can define a few desiderata for a good machine-learning algorithm for drug di
 ## Meta-learning
 
 Note that the traditional machine-learning objective is in the form:
-\begin{equation}
-  \argmin_\theta \metaloss (\Dtrain \mid \theta) = \argmin_\theta \E_{x, y \in \Dtrain} \LB \loss (y, f_\theta(x)_t) \RB
-\end{equation}
+
+{% equation %}
+\argmin_\theta \metaloss (\Dtrain \mid \theta) = \argmin_\theta \E_{x, y \in \Dtrain} \LB \loss (y, f_\theta(x)_t) \RB
+{% endequation %}
 
 where \\(\loss\\) is the loss function, \\(f_\theta\\) is the model parametrised by \\(\theta\\), \\(x\\) is the input and \\(y\\) is the target.
 
 A new range of algorithms has been developed in recent years in order to tackle the issue of generalising from very few examples. The paradigm, called meta-learning, aims at “learning to learn” from a collection of machine-learning problems that share a substantial amount of structure, by designing the objective function in such a way that the algorithm is explicitly trained to learn faster.
 
 Instead of minimising the average loss on a set of individual examples, the meta-learning objective aims to minimise the average generalisation error on a set of training tasks. More formally, the meta-learning objective is in the form:
-\begin{equation}
+{% equation %}
   \label{eq:maml}
   \argmin_\theta \E_{t \in \Dmtrain} \LB \metaloss (\Dquery \mid \theta, \Dsupport) \RB
-\end{equation}
+{% endequation %}
 
 Where \\(t\\) is a task from \\(\Dmtrain\\), the _meta-training set_. Each task comes with _support_ and _query_ sets, corresponding to the training and validation sets in the traditional setting.
 
