@@ -25,59 +25,42 @@
   <!-- Icon -->
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
 
+  <!-- Prism -->
   <link rel="stylesheet"
       href="/assets/css/prism.css">
   <script src="/assets/js/prism.js"></script>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+        }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-chtml.js"
+          integrity="sha256-3Fdoa5wQb+JYfEmTpQHx9sc/GuwpfC/0R9EpBki+mf8=" crossorigin>
+  </script>
+
+  <!-- Pseudocode -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+  </script>
 
 </head>
 
 
 	<body>
 
-		<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-  	tex2jax: {
-  		inlineMath: [['$','$']],
-  		displayMath: [['$$', '$$']],
-  		processEscapes: true,
-  	},
-  	TeX: {
-  	  equationNumbers: {
-  	    autoNumber: "AMS"
-  	  }
-  	},
-  	CommonHTML: {
-  		styles: {
-  		  ".MathJax_Display": {
-  		    "margin-top": "2rem",
-  				"margin-bottom": "1rem"
-  		  },
-  		  ".MJXc-display": {
-  		    "margin-top": "2rem",
-  				"margin-bottom": "1rem"
-  		  }
-  		}
-  	},
-  	"HTML-CSS": {
-  		styles: {
-  		  ".MathJax_Display": {
-  		    "margin-top": "2rem",
-  				"margin-bottom": "1rem"
-  		  },
-  		  ".MJXc-display": {
-  		    "margin-top": "2rem",
-  				"margin-bottom": "1rem"
-  		  }
-  		}
-  	}
-  });
-</script>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script> -->
-
-<div style="display:none">
+		<div style="display:none">
   
   $$
+  \usepackage{algorithm}
+  \usepackage{algorithmic}
+
   \newcommand{\indic}{\mathbbm{1}}
 
   \newcommand{\argmax}{\operatorname*{arg\,max}}
@@ -377,6 +360,7 @@
 		<section class="content">
 
 
+
 <article class="post">
 
 	<div class="post-header">
@@ -496,7 +480,7 @@
   \end{equation}
 </div>
 
-<p>where \(\loss\) is the loss function, \(f_\theta\) is the model parametrised by \(\theta\), \(x\) is the input and \(y\) is the target.</p>
+<p>where $\loss$ is the loss function, $f_\theta$ is the model parametrised by $\theta$, $x$ is the input and $y$ is the target.</p>
 
 <p>A new range of algorithms has been developed in recent years in order to tackle the issue of generalising from very few examples. The paradigm, called meta-learning, aims at “learning to learn” from a collection of machine-learning problems that share a substantial amount of structure, by designing the objective function in such a way that the algorithm is explicitly trained to learn faster.</p>
 
@@ -511,7 +495,7 @@
   \end{equation}
 </div>
 
-<p>Where \(t\) is a task from \(\Dmtrain\), the <em>meta-training set</em>. Each task comes with <em>support</em> and <em>query</em> sets, corresponding to the training and validation sets in the traditional setting.</p>
+<p>Where $t$ is a task from $\Dmtrain$, the <em>meta-training set</em>. Each task comes with <em>support</em> and <em>query</em> sets, corresponding to the training and validation sets in the traditional setting.</p>
 
 <figure class="figure ided text-center" id="figure2">
   <a data-toggle="modal" data-target="#figureModal2">

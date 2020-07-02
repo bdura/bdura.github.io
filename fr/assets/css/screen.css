@@ -14,7 +14,7 @@ ol.bibliography li span { margin-top: -70px; padding-top: 70px; }
 
 .modal-body { padding: 0; }
 
-.modal-backdrop { opacity: 0.8 !important; }
+.modal-backdrop { background-color: white !important; opacity: 0.9 !important; }
 
 .modal figcaption { color: white; }
 
