@@ -1,0 +1,22 @@
+{% assign algorithm_counter = algorithm_counter | plus: 1 %}
+<!-- https://github.com/jekyll/jekyll/issues/7631#issuecomment-516571250 -->
+<figure class="ided" id='algorithm{{ figure_counter }}'>
+  <pre id="read-{{ algorithm_counter }}" style="display:none;">
+    {{ include.code }}
+  </pre>
+  <div id="goal-{{ algorithm_counter }}"></div>
+  <script type="text/javascript">
+      var code = document.getElementById("read-{{ algorithm_counter }}").textContent;
+      var parentEl = document.getElementById("goal-{{ algorithm_counter }}");
+      var options = {
+          lineNumber: true
+      };
+      pseudocode.render(code, parentEl, options);
+  </script>
+  {% if include.caption %}
+    <figcaption class="figure-caption text-center">
+      Algorithm {{ algorithm_counter }}: {{ include.caption }}
+      {% if include.reference %}{% cite include.reference %}{% endif %}
+    </figcaption>
+  {% endif %}
+</figure>
