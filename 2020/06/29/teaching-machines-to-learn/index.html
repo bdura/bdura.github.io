@@ -1,0 +1,640 @@
+<!doctype html>
+
+<html lang="en">
+
+	<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Basile Dura — Teaching machines to learn with meta-learning</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- CSS -->
+  <link href="//fonts.googleapis.com/css?family=Antic+Slab|Fira+Sans" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="/assets/css/screen.css">
+
+  
+
+  <!-- Icon -->
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <!-- Prism -->
+  <link rel="stylesheet"
+      href="/assets/css/prism.css">
+  <script src="/assets/js/prism.js"></script>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+        }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-chtml.js"
+          integrity="sha256-3Fdoa5wQb+JYfEmTpQHx9sc/GuwpfC/0R9EpBki+mf8=" crossorigin>
+  </script>
+
+  <!-- Pseudocode -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js">
+  </script>
+
+</head>
+
+
+	<body>
+
+		<div style="display:none">
+  
+  $$
+  \usepackage{algorithm}
+  \usepackage{algorithmic}
+
+  \newcommand{\indic}{\mathbbm{1}}
+
+  \newcommand{\argmax}{\operatorname*{arg\,max}}
+  \newcommand{\argmin}{\operatorname*{arg\,min}}
+  \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+  \newcommand{\Var}{\mathbb{V}\textrm{ar}}
+  \newcommand{\Cov}{\mathbb{C}\textrm{ov}}
+
+  \newcommand{\Id}{\bm{\textrm{Id}}}
+
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\R}{\mathbb{R}}
+  \newcommand{\N}{\mathbb{N}}
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\Q}{\mathbb{Q}}
+  \newcommand{\Z}{\mathbb{Z}}
+
+  \newcommand{\LP}{\left(}
+  \newcommand{\RP}{\right)}
+  \newcommand{\LB}{\left[}
+  \newcommand{\RB}{\right]}
+  \newcommand{\LC}{\left\{}
+  \newcommand{\RC}{\right\}}
+  \newcommand{\RM}{\right|}
+  \newcommand{\LM}{\left|}
+  \newcommand{\MM}{\middle|}
+
+  \renewcommand{\P}{\mathbb{P}}
+
+  \newcommand{\define}{\stackrel{\mathrm{def}}{=}}
+  \newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+
+  \newcommand{\rfrac}[2]{{}^{#1}\!/_{#2}}
+
+  \newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+
+  \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{exercise}[2][Exercise]{
+  \begin{trivlist}\pdfbookmark{#1 #2}{#1-#2}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}\vspace{5mm}}
+  \newenvironment{question}[2][Question]{
+  \begin{trivlist}\pdfbookmark{#1 #2}{#1-#2}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}\vspace{5mm}}
+  \newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+  \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+  % Integral 'd'
+  \def\diff{{\mathrm{d}}}
+
+  % Vectors
+  \def\vzero{{\bm{0}}}
+  \def\vone{{\bm{1}}}
+  \def\vmu{{\bm{\mu}}}
+  \def\vtheta{{\bm{\theta}}}
+  \def\va{{\bm{a}}}
+  \def\vb{{\bm{b}}}
+  \def\vc{{\bm{c}}}
+  \def\vd{{\bm{d}}}
+  \def\ve{{\bm{e}}}
+  \def\vf{{\bm{f}}}
+  \def\vg{{\bm{g}}}
+  \def\vh{{\bm{h}}}
+  \def\vi{{\bm{i}}}
+  \def\vj{{\bm{j}}}
+  \def\vk{{\bm{k}}}
+  \def\vl{{\bm{l}}}
+  \def\vm{{\bm{m}}}
+  \def\vn{{\bm{n}}}
+  \def\vo{{\bm{o}}}
+  \def\vp{{\bm{p}}}
+  \def\vq{{\bm{q}}}
+  \def\vr{{\bm{r}}}
+  \def\vs{{\bm{s}}}
+  \def\vt{{\bm{t}}}
+  \def\vu{{\bm{u}}}
+  \def\vv{{\bm{v}}}
+  \def\vw{{\bm{w}}}
+  \def\vx{{\bm{x}}}
+  \def\vy{{\bm{y}}}
+  \def\vz{{\bm{z}}}
+
+  % Matrix
+  \def\mA{{\bm{A}}}
+  \def\mB{{\bm{B}}}
+  \def\mC{{\bm{C}}}
+  \def\mD{{\bm{D}}}
+  \def\mE{{\bm{E}}}
+  \def\mF{{\bm{F}}}
+  \def\mG{{\bm{G}}}
+  \def\mH{{\bm{H}}}
+  \def\mI{{\bm{I}}}
+  \def\mJ{{\bm{J}}}
+  \def\mK{{\bm{K}}}
+  \def\mL{{\bm{L}}}
+  \def\mM{{\bm{M}}}
+  \def\mN{{\bm{N}}}
+  \def\mO{{\bm{O}}}
+  \def\mP{{\bm{P}}}
+  \def\mQ{{\bm{Q}}}
+  \def\mR{{\bm{R}}}
+  \def\mS{{\bm{S}}}
+  \def\mT{{\bm{T}}}
+  \def\mU{{\bm{U}}}
+  \def\mV{{\bm{V}}}
+  \def\mW{{\bm{W}}}
+  \def\mX{{\bm{X}}}
+  \def\mY{{\bm{Y}}}
+  \def\mZ{{\bm{Z}}}
+  \def\mBeta{{\bm{\beta}}}
+  \def\mPhi{{\bm{\Phi}}}
+  \def\mLambda{{\bm{\Lambda}}}
+  \def\mSigma{{\bm{\Sigma}}}
+
+  % Caligraphy
+  \def\calA{{\mathcal{A}}}
+  \def\calB{{\mathcal{B}}}
+  \def\calC{{\mathcal{C}}}
+  \def\calD{{\mathcal{D}}}
+  \def\calE{{\mathcal{E}}}
+  \def\calF{{\mathcal{F}}}
+  \def\calG{{\mathcal{G}}}
+  \def\calH{{\mathcal{H}}}
+  \def\calI{{\mathcal{I}}}
+  \def\calJ{{\mathcal{J}}}
+  \def\calK{{\mathcal{K}}}
+  \def\calL{{\mathcal{L}}}
+  \def\calM{{\mathcal{M}}}
+  \def\calN{{\mathcal{N}}}
+  \def\calO{{\mathcal{O}}}
+  \def\calP{{\mathcal{P}}}
+  \def\calQ{{\mathcal{Q}}}
+  \def\calR{{\mathcal{R}}}
+  \def\calS{{\mathcal{S}}}
+  \def\calT{{\mathcal{T}}}
+  \def\calU{{\mathcal{U}}}
+  \def\calV{{\mathcal{V}}}
+  \def\calW{{\mathcal{W}}}
+  \def\calX{{\mathcal{X}}}
+  \def\calY{{\mathcal{Y}}}
+  \def\calZ{{\mathcal{Z}}}
+
+  \def\normal{{\mathcal{N}}}
+
+  \newcommand{\Dtrain}{{D_{\mathrm{train}}}}
+  \newcommand{\Dvalid}{{D_{\mathrm{valid}}}}
+  \newcommand{\Dtest}{{D_{\mathrm{test}}}}
+
+  \newcommand{\Dtraint}{{D_{\mathrm{train}}^t}}
+  \newcommand{\Dvalidt}{{D_{\mathrm{valid}}^t}}
+  \newcommand{\Dtestt}{{D_{\mathrm{test}}^t}}
+
+  \newcommand{\Dmeta}{{\mathcal{D}^\mathrm{meta}}}
+  \newcommand{\Dmtrain}{{\mathcal{D}_\mathrm{train}^\mathrm{meta}}}
+  \newcommand{\Dmvalid}{{\mathcal{D}_\mathrm{valid}^\mathrm{meta}}}
+  \newcommand{\Dmtest}{{\mathcal{D}_\mathrm{test}^\mathrm{meta}}}
+
+  \newcommand{\Dsupport}{{D_{\mathrm{support}}^t}}
+  \newcommand{\Dquery}{{D_{\mathrm{query}}^t}}
+
+  \newcommand{\loss}{\ell}
+  \newcommand{\metaloss}{\mathcal{L}}
+
+  \newcommand{\kr}{\mathrm{KR}}
+  \newcommand{\kernel}{\mathrm{k}}
+  \newcommand{\km}{\mathbf{K}}
+  $$
+  
+</div>
+
+
+		<nav>
+	
+	
+
+		
+		<a href="
+
+
+  
+
+/
+" class="">
+			Home
+		</a>
+	
+	
+
+		
+		<a href="
+
+
+  
+
+/themes/
+" class="">
+			Themes
+		</a>
+	
+	
+
+		
+		<a href="
+
+
+  
+
+/about/
+" class="">
+			About
+		</a>
+	
+
+	<!-- 
+		
+
+		
+
+		<a href="
+			
+				https://courses.bdura.me
+			
+		" class="">
+			Courses
+		</a>
+	
+		
+
+		
+
+		<a href="
+			
+				https://recettes.bdura.me/en/
+			
+		" class="">
+			Recipes
+		</a>
+	 -->
+
+	<div class="dropdown">
+  <a class=" dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Other
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+		
+			
+
+			
+
+			<a href="
+				
+					https://courses.bdura.me
+				
+			" class="dropdown-item ">
+				Courses
+			</a>
+		
+			
+
+			
+
+			<a href="
+				
+					https://recettes.bdura.me/en/
+				
+			" class="dropdown-item ">
+				Recipes
+			</a>
+		
+  </div>
+</div>
+
+</nav>
+
+
+		<div class="container main-content">
+
+			<!-- <header>
+	<div class="text-center">
+		<a href="">
+			<img src="/assets/images/author.png" alt="logo" style="border-radius: 50%;">
+		</a>
+	</div>
+</header> -->
+
+<div class="row">
+	<div class="col-12 col-lg-2"></div>
+
+	<div class="col-12 col-lg-8">
+		<section class="content">
+
+
+
+<article class="post">
+
+	<div class="post-header">
+	<h1>
+		<a href="/2020/06/29/teaching-machines-to-learn/">
+			Teaching machines to learn with meta-learning
+		</a>
+	</h1>
+	<time datetime="2020-06-29 00:00:00 +0000">
+		<!-- June 29, 2020 -->
+		June 29, 2020
+	</time>
+</div>
+
+
+	<div class="image">
+		<img src="https://source.unsplash.com/OyCl7Y4y0Bk" alt="Teaching machines to learn with meta-learning" class="img-fluid">
+	</div>
+
+	<div class="post-body">
+		<p>Although machine-learning has shown great success in many areas, human-like intelligence is still well beyond our reach. Meta-learning can help.</p>
+
+<p>With the help of deep learning, machines have become especially good at doing function approximation, and can thus solve complex tasks as long as:</p>
+<ul>
+  <li>The task is well-defined, ie there is a clear objective/cost function to minimise.</li>
+  <li>The task is fixed, in the sense that the distribution does not shift between the training examples and the data the network will encounter <em>in the wild</em>.</li>
+  <li><strong>Huge</strong> amounts of training examples are available. For example, Inception (a well-known image-recognition model) was trained on 1.2 million images <a class="citation" href="#inception">(Szegedy et al., 2015)</a>…</li>
+</ul>
+
+<p>On the contrary, machines are still famously bad at generalising from very few data points, or work in non-stationary environments (where the data distributions changes); two abilities at which humans excel.</p>
+
+<p>Moreover, it is still strikingly hard to transfer knowledge across tasks.
+Imagine you are training a network to recognise cats from dogs, and another to classify between birds and horses.
+Since natural images share so much structural information, it seems clear that each tasks can benefit from the other, especially if the amount of data available is limited.</p>
+
+<p>More generally, there are many use cases where we have access to numerous tasks that share a significant amount of structure and would benefit from being learnt in parallel. With the traditional machine-learning toolbox however, sharing knowledge across problems is tricky.</p>
+
+<h2 id="traditional-machine-learning-and-notations">Traditional machine-learning and notations</h2>
+
+<p>In supervised learning, the training procedure aims to find the parameters that minimise the <em>loss</em> on the training set. More formally, given a model $f_\theta$ parametrised by $\theta$, our goal is to find $\theta^\star$ that minimises the expected loss on the training set:</p>
+
+<div class="equation">
+  \begin{equation}
+    
+\theta^\star = \argmin_\theta \metaloss (\Dtrain \mid \theta) = \argmin_\theta \; \E_{x, y \in \Dtrain} \LB \loss (y, f_\theta(x)_t) \RB,
+
+  \end{equation}
+</div>
+
+<p>where $\loss$ is the loss function and $\Dtrain$ is the training set where $x$ is the input and $y$ is the target.</p>
+
+<p>One immediate way to use the knowledge gathered across tasks with traditional machine-learning is to explicitly share the learnt parametres.</p>
+
+<figure class="figure ided text-center" id="figure1">
+  <a data-toggle="modal" data-target="#figureModal1">
+  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSAYye2BpBa1ZOByvFEx3mJjFjzfqgfWjvv21OHModJjvdkBsv5fvO0NUlDkMbzS26p_OfUXy8vikGB/pub?w=1604&amp;h=401" class="figure-img img-fluid" alt="Multi-task learning" />
+  </a>
+  
+    <figcaption class="figure-caption text-center">
+      Figure 1: Multi-task learning
+      
+    </figcaption>
+  
+</figure>
+
+<div class="modal align-items-center show" id="figureModal1" tabindex="-1">
+
+  <div class="text-right fixed-top">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+      <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
+    </button>
+  </div>
+
+  <div class="modal-body vertically-centered">
+    <figure class="figure">
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vSAYye2BpBa1ZOByvFEx3mJjFjzfqgfWjvv21OHModJjvdkBsv5fvO0NUlDkMbzS26p_OfUXy8vikGB/pub?w=1604&amp;h=401" class="figure-img img-fluid" alt="Multi-task learning" />
+      
+        <figcaption class="figure-caption text-center">
+          Figure 1: Multi-task learning
+        </figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+<p><a href="#figure1" class="ref">Figure 1</a>
+ shows the most basic form of multi-task learning, wherein the model is trained on every task at once. The network makes a prediction for each task and the task label, fed along the input, is used to select which component to pass along.</p>
+
+<p>Multi-task learning is a good attempt at learning from more than one task, and belonging to the traditional machine-learning toolbox, it is easy to implement. However, it assumes that the tasks are known beforehand. By itself it cannot help learn faster on a new task, or if the distribution changes –ever so slightly.</p>
+
+<h2 id="learning-to-learn-with-meta-learning">Learning to learn with meta-learning</h2>
+
+<p>The meta-learning paradigm takes a radically different approach: instead of sharing parametres explicitly, a meta-learning algorithm <strong>learns how to learn</strong> during the training procedure. That way, it will adapt more rapidly when it is released “in the wild”.</p>
+
+<p>To achieve this feat, the meta-learning objective aims to minimise the average <strong>generalisation error on a set of training tasks</strong> rather than the average loss on a set of individual examples.</p>
+
+<h4 id="the-meta-dataset">The meta-dataset</h4>
+
+<p>In meta-learning, we work with collections of datasets, or <strong>meta-datasets</strong>, which describe multiple tasks over which the training loop iterates.
+As usual, we divide the meta-dataset into a training collection $\Dmtrain$ and a test collection $\Dmtest$. At test time, it is absolutely paramount to test the generalisation performance <strong>on new tasks that were not seen during training</strong>. Otherwise, it is <strong>not meta-learning</strong>.</p>
+
+<p>Given a task $t$, the training procedure generates a support set $\Dsupport$, used to adapt the model, and a query set $\Dquery$, used to test its generalisation performance.</p>
+
+<h4 id="the-meta-objective">The meta-objective</h4>
+
+<p>Formally, the meta-learning objective is in the form:</p>
+
+<div class="equation">
+  \begin{equation}
+    
+  \label{eq:maml}
+  \argmin_\theta \; \E_{t \in \Dmtrain} \LB \metaloss (\Dquery \mid \theta, \Dsupport) \RB,
+
+  \end{equation}
+</div>
+
+<p>where $\metaloss (\Dquery \mid \theta, \Dsupport)$ is the generalisation error on $\Dquery$ after adaptation on $\Dsupport$.</p>
+
+<h4 id="the-training-loop">The training loop</h4>
+
+<p><a href="#algorithm1" class="ref">Algorithm 1</a>
+ shows how the training procedure can teach a network to learn faster.</p>
+
+<!-- https://github.com/jekyll/jekyll/issues/7631#issuecomment-516571250 -->
+<figure class="ided" id="algorithm1">
+  <pre id="read-1" style="display:none;">
+    
+\begin{algorithm}
+  \caption{The meta-learning training loop}
+  \begin{algorithmic}
+    \REQUIRE $\tau(t)$: distribution over tasks
+    \STATE Randomly initialise $\theta$
+    \WHILE{not done}
+      \STATE Sample batch $T$ of tasks $t \sim \tau(t)$
+      \FORALL{$t$}
+        \STATE Sample support and query sets ${D_{\mathrm{support}}^t}$ and ${D_{\mathrm{query}}^t}$
+        \STATE Adapt the model to ${D_{\mathrm{support}}^t}$
+        \STATE Evaluate the generalisation loss $\mathcal{L}({D_{\mathrm{query}}^t} \mid \theta_t, {D_{\mathrm{support}}^t})$
+      \ENDFOR
+      \STATE Update $\theta$ to minimise the empirical meta-risk $\frac{1}{|T|} \sum_{t \in T} \mathcal{L}({D_{\mathrm{query}}^t} \mid \theta_t, {D_{\mathrm{support}}^t})$
+    \ENDWHILE
+  \end{algorithmic}
+\end{algorithm}
+
+  </pre>
+  <div id="goal-1"></div>
+  <script type="text/javascript">
+      var code = document.getElementById("read-1").textContent;
+      var parentEl = document.getElementById("goal-1");
+      var options = {
+          lineNumber: true
+      };
+      pseudocode.render(code, parentEl, options);
+  </script>
+  
+    <figcaption class="figure-caption text-center">
+      Algorithm 1: The meta-learning training loop
+      
+    </figcaption>
+  
+</figure>
+
+<p>The fact that in meta-learning we minimise the error after adaptation may raise a red flag: in traditional machine-learning, doing so would bias your network towards the validation set and lose some of its generalisation capabilities. But remember: meta-learning is about learning to learn better. In this case, the validation error is computed on a held-out set of tasks and using the same adaptation/evaluation procedure.</p>
+
+<h4 id="model-agnostic-meta-learning">Model-agnostic meta-learning</h4>
+
+<p>Model-agnostic meta-learning, or MAML, is one of the most commonly used meta-learning method. Its popularity stems in part from the fact that it can adapt any differentiable machine-learning algorithm to meta-learning.</p>
+
+<!-- https://github.com/jekyll/jekyll/issues/7631#issuecomment-516571250 -->
+<figure class="ided" id="algorithm1">
+  <pre id="read-2" style="display:none;">
+    
+\begin{algorithm}
+  \caption{Model-Agnostic Meta-Learning}
+  \begin{algorithmic}
+    \REQUIRE $\tau(t)$: distribution over tasks
+    \REQUIRE $\alpha$, $\beta$: step size hyper-parameters
+    \STATE Randomly initialise $\theta$
+    \WHILE{not done}
+      \STATE Sample batch $T$ of tasks $t \sim \tau(t)$
+      \FORALL{$t$}
+        \STATE Sample support and query sets ${D_{\mathrm{support}}^t}$ and ${D_{\mathrm{query}}^t}$
+        \STATE Evaluate $\nabla_\theta \mathcal{L}({D_{\mathrm{support}}^t} \mid \theta)$ with respect to the support set
+        \STATE Compute adapted parameters with gradient descent:
+        $\theta_t=\theta-\alpha \nabla_\theta \mathcal{L}({D_{\mathrm{support}}^t} \mid \theta)$
+      \ENDFOR
+      \STATE Update $\theta \leftarrow \theta - \beta \nabla_\theta \sum_{t \in T}  \mathcal{L}({D_{\mathrm{query}}^t} \mid \theta_t)$
+    \ENDWHILE
+  \end{algorithmic}
+\end{algorithm}
+
+  </pre>
+  <div id="goal-2"></div>
+  <script type="text/javascript">
+      var code = document.getElementById("read-2").textContent;
+      var parentEl = document.getElementById("goal-2");
+      var options = {
+          lineNumber: true
+      };
+      pseudocode.render(code, parentEl, options);
+  </script>
+  
+    <figcaption class="figure-caption text-center">
+      Algorithm 2: Model-agnostic meta-learning
+      <a class="citation" href="#finn2017model">(Finn et al., 2017)</a>
+    </figcaption>
+  
+</figure>
+
+<!-- <a href="#algorithm1" class="ref">Algorithm 1</a>
+ -->
+
+	</div>
+
+	
+
+	
+		<h2>References</h2>
+
+		<ol class="bibliography"><li><span id="inception">Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., Erhan, D., Vanhoucke, V., &amp; Rabinovich, A. (2015). Going Deeper with Convolutions. <i>Computer Vision and Pattern Recognition (CVPR)</i>. http://arxiv.org/abs/1409.4842</span></li>
+<li><span id="finn2017model">Finn, C., Abbeel, P., &amp; Levine, S. (2017). Model-agnostic meta-learning for fast adaptation of deep networks. <i>Proceedings of the 34th International Conference on Machine Learning-Volume 70</i>, 1126–1135.</span></li></ol>
+	
+
+
+
+</article>
+</section>
+	</div>
+
+	<div class="col-12 col-lg-2"></div>
+
+</div>
+
+
+		</div>
+
+		<footer>
+  <div class="container">
+    <hr>
+
+    <div class="pdf-link">
+      <a href="/assets/files/Basile%20Dura%20Resume.pdf">My résumé</a>
+    </div>
+
+    &copy; Basile Dura  2020. Adapted from a theme by
+    <a href="https://github.com/CloudCannon/treat-jekyll-template" target="_blank" rel="noopener">CloudCannon</a>.
+
+    <div class="language-switch">
+      
+        
+          <a href="#" class="active">en</a>
+        
+        
+            •
+        
+      
+        
+          
+            <a href="/fr/2020/06/29/teaching-machines-to-learn/">fr</a>
+          
+        
+        
+      
+    </div>
+
+
+  </div>
+</footer>
+
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+		<script crossorigin="anonymous" src="https://kit.fontawesome.com/f762d0327c.js"></script>
+	</body>
+</html>
