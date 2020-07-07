@@ -3,10 +3,12 @@ date: 2020-06-29
 title: Teaching machines to learn with meta-learning
 categories:
   - ai
-image: https://source.unsplash.com/OyCl7Y4y0Bk
+image:
+  source: https://source.unsplash.com/OyCl7Y4y0Bk
+summary: Although machine-learning has shown great success in many areas, human-like intelligence is still well beyond our reach. Meta-learning can help.
 ---
 
-Although machine-learning has shown great success in many areas, human-like intelligence is still well beyond our reach. Meta-learning can help.
+Although machine-learning has shown great success in many areas, human-like intelligence is still well beyond our reach.
 
 With the help of deep learning, machines have become especially good at doing function approximation, and can thus solve complex tasks as long as:
 * The task is well-defined, ie there is a clear objective/cost function to minimise.

@@ -4,7 +4,10 @@ title: Meta-learning for drug discovery
 categories:
   - ai
   - pharma
-image: https://source.unsplash.com/0tfz7ZoXaWc
+image:
+  source: https://source.unsplash.com/0tfz7ZoXaWc
+  legend:
+  reference:
 ---
 
 This post presents the report I wrote to finalise an internship at [InVivo AI](https://invivoai.com/), a Montréal-based startup aiming to bring few-shot learning to drug discovery.

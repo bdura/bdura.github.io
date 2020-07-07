@@ -46,15 +46,20 @@ img {
 	max-width: 100%;
 }
 
-figure.full {
-	width: 100vw;
-	margin-left: 50%;
-	transform: translateX(-50%);
+figure{
+
+	width: 100%;
+
+	&.full {
+		width: 100vw;
+		margin-left: 50%;
+		transform: translateX(-50%);
+	}
 }
 
-ol li + li {
-	margin: 20px 0 0 0;
-}
+// ol li + li {
+// 	margin: 20px 0 0 0;
+// }
 
 footer {
 	color: $light-grey;
