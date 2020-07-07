@@ -4,6 +4,7 @@ title: Meta-learning for drug discovery
 categories:
   - ai
   - pharma
+  - meta
 image:
   source: https://source.unsplash.com/0tfz7ZoXaWc
   legend:

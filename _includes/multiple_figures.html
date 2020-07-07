@@ -3,11 +3,11 @@
 {% assign subcaptions = include.subcaptions | split: '|' %}
 
 <figure class="figure ided text-center" id='figure{{ figure_counter }}'>
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div id="carousel{{ figure_counter }}" class="carousel slide" data-ride="carousel">
 
     <ol class="carousel-indicators">
       {% for link in links %}
-        <li data-target="#carouselExampleControls" data-slide-to="{{ forloop.index0 }}"{% if forloop.first %} class="active"{% endif %}></li>
+        <li data-target="#carousel{{ figure_counter }}" data-slide-to="{{ forloop.index0 }}"{% if forloop.first %} class="active"{% endif %}></li>
       {% endfor %}
     </ol>
 
@@ -23,11 +23,11 @@
       {% endfor %}
     </div>
 
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carousel{{ figure_counter }}" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#carousel{{ figure_counter }}" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>

@@ -28,6 +28,9 @@ categories:
   maths: Mathematics
   ai: Artificial intelligence
   pharma: Drug discovery
+  meta: Meta learning
+  dl: Deep learning
+  rl: Reinforcement learning
 
 post:
   header:
