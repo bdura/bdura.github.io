@@ -8,7 +8,7 @@ nav a:hover { color: #000; text-decoration: none; }
 
 ol.bibliography li span { margin-top: -70px; padding-top: 70px; }
 
-.ided { margin-top: -70px; padding-top: 70px; }
+.ided { margin-top: -70px; padding-top: 70px; z-index: -999999 !important; }
 
 .vertically-centered { position: relative; top: 50%; transform: translateY(-50%); }
 
@@ -16,7 +16,21 @@ ol.bibliography li span { margin-top: -70px; padding-top: 70px; }
 
 .modal-backdrop { background-color: white !important; opacity: 0.9 !important; }
 
-.modal figcaption { color: white; }
+.modal figcaption { color: black; }
+
+figcaption.figure-subcaption { font-size: 80%; color: #6c757d; }
+
+.carousel-control-prev-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important; }
+
+.carousel-control-next-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important; }
+
+.carousel-indicators li { background-color: gray; }
+
+.carousel-indicators .active { background-color: black; }
+
+.carousel-indicators li { width: 7px; height: 7px; border-radius: 100%; }
+
+.carousel-indicators { bottom: 0px; }
 
 html, body { padding: 0; margin: 0; line-height: 1.8em; }
 
@@ -36,9 +50,9 @@ header { text-align: center; padding-bottom: 40px; }
 
 img { max-width: 100%; }
 
-figure.full { width: 100vw; margin-left: 50%; transform: translateX(-50%); }
+figure { width: 100%; }
 
-ol li + li { margin: 20px 0 0 0; }
+figure.full { width: 100vw; margin-left: 50%; transform: translateX(-50%); }
 
 footer { color: #999; text-align: center; padding: 20px 0; font-size: .8em; }
 
