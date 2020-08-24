@@ -72,4 +72,4 @@ Invented in 1970 by British mathematician John Horton Conway, the [Game of Life]
 
 {% include figure.html source="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" caption="A single Gosper's glider gun creating gliders (Wikipedia)"%}
 
-{% include ref_fig.html label=3 capitalise=true %} provides an example of such complex entities: it shows a "glider gun", a periodic pattern shooting out _gliders_ –small units that translate themselves across the grid.
+{% include ref_fig.html label=3 capitalise=true %} provides an example of such complex pattern: it shows a "glider gun", a periodic structure shooting out _gliders_ –small units that translate themselves across the grid.
