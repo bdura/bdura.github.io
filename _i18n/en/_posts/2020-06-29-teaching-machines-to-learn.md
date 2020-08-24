@@ -6,7 +6,7 @@ categories:
   - meta
 image:
   source: https://source.unsplash.com/OyCl7Y4y0Bk
-summary: Although machine-learning has shown great success in many areas, human-like intelligence is still well beyond our reach. Meta-learning can help.
+description: Although machine-learning has shown great success in many areas, human-like intelligence is still well beyond our reach. Meta-learning can help.
 ---
 
 Although machine-learning has shown great success in many areas, human-like intelligence is still well beyond our reach.

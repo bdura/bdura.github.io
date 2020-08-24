@@ -21,7 +21,7 @@
 title: Basile Dura
 email: basile@bdura.me
 description: >- # this means to ignore newlines until "baseurl:"
-  Basile Dura
+  Basile Dura's personal page... A patchwork of projects revolving around artificial intelligence.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://bdura.me" # the base hostname & protocol for your site, e.g. http://example.com
 
