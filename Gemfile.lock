@@ -1,24 +1,3 @@
-GIT
-  remote: https://github.com/jekyll/jekyll.git
-  revision: 4a875acb26165caa80cce31d4639221539f0e05c
-  ref: refs/pull/7948/head
-  specs:
-    jekyll (4.0.0)
-      addressable (~> 2.4)
-      colorator (~> 1.0)
-      em-websocket (~> 0.5)
-      i18n (>= 0.9.5, < 2)
-      jekyll-sass-converter (~> 2.0)
-      jekyll-watch (~> 2.0)
-      kramdown (~> 2.1)
-      kramdown-parser-gfm (~> 1.0)
-      liquid (~> 4.0)
-      mercenary (~> 0.3.3)
-      pathutil (~> 0.9)
-      rouge (~> 3.0)
-      safe_yaml (~> 1.0)
-      terminal-table (~> 1.8)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -46,6 +25,21 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    jekyll (4.1.1)
+      addressable (~> 2.4)
+      colorator (~> 1.0)
+      em-websocket (~> 0.5)
+      i18n (~> 1.0)
+      jekyll-sass-converter (~> 2.0)
+      jekyll-watch (~> 2.0)
+      kramdown (~> 2.1)
+      kramdown-parser-gfm (~> 1.0)
+      liquid (~> 4.0)
+      mercenary (~> 0.4.0)
+      pathutil (~> 0.9)
+      rouge (~> 3.0)
+      safe_yaml (~> 1.0)
+      terminal-table (~> 1.8)
     jekyll-multiple-languages-plugin (1.7.0)
       jekyll (>= 2.0, < 5.0)
     jekyll-paginate (1.1.0)
@@ -67,7 +61,7 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    mercenary (0.3.6)
+    mercenary (0.4.0)
     namae (1.0.1)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
@@ -94,7 +88,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll!
   jekyll-multiple-languages-plugin
   jekyll-paginate (= 1.1.0)
   jekyll-scholar
