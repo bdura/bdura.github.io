@@ -11,7 +11,7 @@ image:
   reference:
 ---
 
-This post presents the report I wrote to finalise an internship at [InVivo AI](https://invivoai.com/), a Montréal-based startup aiming to bring few-shot learning to drug discovery.
+This post presents the report I wrote to finalise an internship at [InVivo AI](https://invivoai.com/), a Montréal-based and Mila-affiliated startup aiming to bring few-shot learning to drug discovery.
 
 You can find the full report [here](/assets/files/Meta-learning for drug discovery.pdf). It is divided into four parts:
 

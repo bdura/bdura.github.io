@@ -1,3 +1,3 @@
-My name is Basile Dura. I am about to graduate from Mila, the institute for learning algorithms located in Montréal and founded by Turing Award recipient Yoshua Bengio.
+My name is Basile Dura. I recently graduated from Mila, the institute for learning algorithms located in Montréal and founded by Turing Award recipient Yoshua Bengio.
 
-Deeply interested in artificial intelligence, I am looking for ways to put the technology to good use. I recently finished an internship at [InVivo AI](https://invivoai.com/), a Montréal-based startup where I worked to bring few-shot learning to drug discovery and unlock small & noisy datasets.
+Deeply interested in artificial intelligence and how it can benefit the many, I just started a mission at Assistance Publique - Hôpitaux de Paris (AP-HP), a cluster of thirty-nine university hospitals in Paris. There, I work in the data science team, using AI to accelerate health care and medical research.
