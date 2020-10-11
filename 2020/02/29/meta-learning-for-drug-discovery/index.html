@@ -35,19 +35,13 @@
   <script src="/assets/js/prism.js"></script>
 
   <!-- MathJax -->
-  <script>
-    MathJax = {
-        tex: {
-            inlineMath: [['$','$'], ['\\(','\\)']],
-            displayMath: [['$$','$$'], ['\\[','\\]']],
-            processEscapes: true,
-            processEnvironments: true,
-        }
-    }
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-chtml.js"
-          integrity="sha256-3Fdoa5wQb+JYfEmTpQHx9sc/GuwpfC/0R9EpBki+mf8=" crossorigin>
-  </script>
+
+  <!-- Lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
 
   <!-- Pseudocode -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
@@ -395,7 +389,7 @@
 	</div>
 
 	<div class="post-body">
-		<p>This post presents the report I wrote to finalise an internship at <a href="https://invivoai.com/">InVivo AI</a>, a Montréal-based startup aiming to bring few-shot learning to drug discovery.</p>
+		<p>This post presents the report I wrote to finalise an internship at <a href="https://invivoai.com/">InVivo AI</a>, a Montréal-based and Mila-affiliated startup aiming to bring few-shot learning to drug discovery.</p>
 
 <p>You can find the full report <a href="/assets/files/Meta-learning for drug discovery.pdf">here</a>. It is divided into four parts:</p>
 
@@ -436,11 +430,14 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
       <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
     </button>
+    <!-- <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
   </div>
 
   <div class="modal-body vertically-centered">
     <figure class="figure text-center">
-      <img src="/assets/images/invivo/drug-discovery.jpg" class="figure-img img-fluid" alt="The traditional drug discovery pipeline" />
+      <img src="/assets/images/invivo/drug-discovery.jpg" class="figure-img img-fluid" alt="The traditional drug discovery pipeline" style="max-height: 90vh; max-width: 90%;" />
       
         <figcaption class="figure-caption text-center">
           Figure 1: The traditional drug discovery pipeline
@@ -529,11 +526,14 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
       <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
     </button>
+    <!-- <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
   </div>
 
   <div class="modal-body vertically-centered">
     <figure class="figure text-center">
-      <img src="https://docs.google.com/drawings/d/e/2PACX-1vTmM4I87M3EzlrnEvEqAEfyj5qf4s-GhXqMORuEHkNENLijSotokbB0mmKlGpDtImGXv0xPMGsrpc__/pub?w=584&amp;h=537" class="figure-img img-fluid" alt="The meta-training loop" />
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vTmM4I87M3EzlrnEvEqAEfyj5qf4s-GhXqMORuEHkNENLijSotokbB0mmKlGpDtImGXv0xPMGsrpc__/pub?w=584&amp;h=537" class="figure-img img-fluid" alt="The meta-training loop" style="max-height: 90vh; max-width: 90%;" />
       
         <figcaption class="figure-caption text-center">
           Figure 2: The meta-training loop

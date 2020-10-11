@@ -36,19 +36,13 @@
   <script src="/assets/js/prism.js"></script>
 
   <!-- MathJax -->
-  <script>
-    MathJax = {
-        tex: {
-            inlineMath: [['$','$'], ['\\(','\\)']],
-            displayMath: [['$$','$$'], ['\\[','\\]']],
-            processEscapes: true,
-            processEnvironments: true,
-        }
-    }
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-chtml.js"
-          integrity="sha256-3Fdoa5wQb+JYfEmTpQHx9sc/GuwpfC/0R9EpBki+mf8=" crossorigin>
-  </script>
+
+  <!-- Lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
 
   <!-- Pseudocode -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
@@ -436,11 +430,14 @@ The answer might seem obvious: it’s just <em>survival of the fittest</em>. But
     <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
       <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
     </button>
+    <!-- <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
   </div>
 
   <div class="modal-body vertically-centered">
     <figure class="figure text-center">
-      <img src="https://docs.google.com/drawings/d/e/2PACX-1vQnPoOyX5pvzlugkIhhGi86Vr81HPJ-EGLYdOIvBw_fomYRp-iQZAFE3OENGdUhj4VU6EbZurJhFvxZ/pub?w=281&amp;h=311" class="figure-img img-fluid" alt="E. coli's chemotaxis, a sequence of runs and tumbles" />
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vQnPoOyX5pvzlugkIhhGi86Vr81HPJ-EGLYdOIvBw_fomYRp-iQZAFE3OENGdUhj4VU6EbZurJhFvxZ/pub?w=281&amp;h=311" class="figure-img img-fluid" alt="E. coli's chemotaxis, a sequence of runs and tumbles" style="max-height: 90vh; max-width: 90%;" />
       
         <figcaption class="figure-caption text-center">
           Figure 1: E. coli's chemotaxis, a sequence of runs and tumbles
@@ -585,11 +582,14 @@ v(s, a) = R(s, a) + \gamma \max_{a'} v(s', a'),
     <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
       <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
     </button>
+    <!-- <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
   </div>
 
   <div class="modal-body vertically-centered">
     <figure class="figure text-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="figure-img img-fluid" alt="A single Gosper's glider gun creating gliders (Wikipedia)" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" class="figure-img img-fluid" alt="A single Gosper's glider gun creating gliders (Wikipedia)" style="max-height: 90vh; max-width: 90%;" />
       
         <figcaption class="figure-caption text-center">
           Figure 3: A single Gosper's glider gun creating gliders (Wikipedia)

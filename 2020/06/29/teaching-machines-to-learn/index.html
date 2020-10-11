@@ -35,19 +35,13 @@
   <script src="/assets/js/prism.js"></script>
 
   <!-- MathJax -->
-  <script>
-    MathJax = {
-        tex: {
-            inlineMath: [['$','$'], ['\\(','\\)']],
-            displayMath: [['$$','$$'], ['\\[','\\]']],
-            processEscapes: true,
-            processEnvironments: true,
-        }
-    }
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-chtml.js"
-          integrity="sha256-3Fdoa5wQb+JYfEmTpQHx9sc/GuwpfC/0R9EpBki+mf8=" crossorigin>
-  </script>
+
+  <!-- Lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
 
   <!-- Pseudocode -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
@@ -446,11 +440,14 @@ Since natural images share so much structural information, it seems clear that e
     <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
       <i class="fas fa-times-circle fa-2x" style="margin: 20px"></i>
     </button>
+    <!-- <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
   </div>
 
   <div class="modal-body vertically-centered">
     <figure class="figure text-center">
-      <img src="https://docs.google.com/drawings/d/e/2PACX-1vSAYye2BpBa1ZOByvFEx3mJjFjzfqgfWjvv21OHModJjvdkBsv5fvO0NUlDkMbzS26p_OfUXy8vikGB/pub?w=1604&amp;h=401" class="figure-img img-fluid" alt="Multi-task learning" />
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vSAYye2BpBa1ZOByvFEx3mJjFjzfqgfWjvv21OHModJjvdkBsv5fvO0NUlDkMbzS26p_OfUXy8vikGB/pub?w=1604&amp;h=401" class="figure-img img-fluid" alt="Multi-task learning" style="max-height: 90vh; max-width: 90%;" />
       
         <figcaption class="figure-caption text-center">
           Figure 1: Multi-task learning

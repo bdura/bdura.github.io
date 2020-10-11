@@ -35,19 +35,13 @@
   <script src="/assets/js/prism.js"></script>
 
   <!-- MathJax -->
-  <script>
-    MathJax = {
-        tex: {
-            inlineMath: [['$','$'], ['\\(','\\)']],
-            displayMath: [['$$','$$'], ['\\[','\\]']],
-            processEscapes: true,
-            processEnvironments: true,
-        }
-    }
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-chtml.js"
-          integrity="sha256-3Fdoa5wQb+JYfEmTpQHx9sc/GuwpfC/0R9EpBki+mf8=" crossorigin>
-  </script>
+
+  <!-- Lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
 
   <!-- Pseudocode -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
@@ -371,9 +365,9 @@
 	<div class="col-12 col-lg-2"></div>
 
 	<div class="col-12 col-lg-8">
-		<section class="content"><p>My name is Basile Dura. I am about to graduate from Mila, the institute for learning algorithms located in Montréal and founded by Turing Award recipient Yoshua Bengio.</p>
+		<section class="content"><p>My name is Basile Dura. I recently graduated from Mila, the institute for learning algorithms located in Montréal and founded by Turing Award recipient Yoshua Bengio.</p>
 
-<p>Deeply interested in artificial intelligence, I am looking for ways to put the technology to good use. I recently finished an internship at <a href="https://invivoai.com/">InVivo AI</a>, a Montréal-based startup where I worked to bring few-shot learning to drug discovery and unlock small &amp; noisy datasets.</p>
+<p>Deeply interested in artificial intelligence and how it can benefit the many, I just started a mission at Assistance Publique - Hôpitaux de Paris (AP-HP), a cluster of thirty-nine university hospitals in Paris. There, I work in the data science team, using AI to accelerate health care and medical research.</p>
 
 </section>
 	</div>
