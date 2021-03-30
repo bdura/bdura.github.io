@@ -1,0 +1,13 @@
+{% assign animation_counter = animation_counter | plus: 1 %}
+<figure class="figure ided text-center" id='animation{{ animation_counter }}'>
+  <div style="height: calc(var(--vh, 1vh) * 70)">
+    <div id="canvas{{ animation_counter }}" style="height: 100%; width: 100%"></div>
+  </div>
+
+  {% if include.caption %}
+    <figcaption class="figure-caption text-center">
+      Animation {{ animation_counter }}: {{ include.caption }}
+      {% if include.reference %}{% cite include.reference %}{% endif %}
+    </figcaption>
+  {% endif %}
+</figure>
