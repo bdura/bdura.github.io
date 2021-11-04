@@ -1,0 +1,111 @@
+---
+date: 2020-08-10
+title: How do you stop an epidemic?
+categories:
+  - pharma
+image:
+  source: https://source.unsplash.com/_zFRhU7jqzc
+description: |
+  An interactive visualisation of the effects of vaccination.
+code: https://github.com/bdura/vaccination
+---
+
+<style>
+  .healthy {
+  fill: gold;
+  }
+
+  .immune {
+  fill: steelblue;
+  }
+
+  .contagious {
+  fill: orangeRed;
+  }
+
+  .vaccinated {
+  fill: darkTurquoise;
+  }
+
+  .replay-screen {
+  fill: #fff0;
+  }
+
+  .replay-screen:hover {
+  fill: #fff9;
+  }
+
+  .replay-screen:hover+text {
+  display: block;
+  }
+
+  .replay-screen+text {
+  display: none;
+  }
+</style>
+
+<p>
+  Vaccination is a core part of the public health toolbox. It can not only protect individuals from contracting a virus, but also protect society as a whole, especially its weaker members (eg. the elderly or people suffering from pre-existing conditions).
+</p>
+
+<p>
+  In many cases such as COVID-19, lethality might be very low. Invidividually, most people do not actually need vaccination for themselves: the stark contrast in symptoms between the young and the less young in the case of the novel coronavirus epitomises this fact. For such diseases, “stronger” people will get vaccinated not to protect themselves, but rather to protect others.
+</p>
+
+<p>
+  To have a better idea of what is going on, let's look at the diffusion of a virus within an unvaccinated population. To do this, we'll simulate each individual with a circle going around a "city". Healthy individuals
+  (<svg width=10 height="1em"><circle r="5" cx=5 cy=".4em" class="healthy"></circle></svg>)
+  are contaminated upon a single contact with contagious subjects
+  (<svg width=10 height="1em"><circle r="5" cx=5 cy=".4em" class="contagious"></circle></svg>),
+  and become immune to the virus as they recover
+  (<svg width=10 height="1em"><circle r="5" cx=5 cy=".4em" class="immune"></circle></svg>)
+  .
+</p>
+
+{% include animation.html caption="A disease spreading at break-neck speed..." %}
+
+<p>
+  {% include ref_anim.html label=1 capitalise=true %} shows how the disease spreads.
+</p>
+
+{% include animation.html caption="The same simulation, but customisable." %}
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="/assets/js/vaccination.js"></script>
+<!-- <script src="https://bdura.github.io/vaccination/assets/js/viewport.js"></script> -->
+<script src="https://unpkg.com/d3-simple-slider"></script>
+
+<script>
+
+var canvas1 = d3.select("#canvas1");
+    canvas2 = d3.select("#canvas2");
+
+var bb = canvas1.node().getBoundingClientRect()
+
+var width = _.min([bb.width, 1000]),
+		height = bb.height;
+
+var animation1 = contaminationChart("en")
+		.width(width)
+		.height(height)
+    .controls(false)
+    .evolution(true)
+    .bars(false)
+		.vaccination(0)
+		.period(5)
+		.contagiousness(.9);
+
+// var animation2 = contaminationChart("en")
+// 		.width(width)
+// 		.height(height)
+//     .controls(true)
+//     .evolution(true)
+//     .bars(true)
+// 		.vaccination(0)
+// 		.period(5)
+// 		.contagiousness(1);
+
+  animation1(canvas1);
+  // animation2(canvas2);
+
+</script>

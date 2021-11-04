@@ -1,0 +1,180 @@
+---
+date: 2020-07-17
+title: Comment arrêter une épidémie
+categories:
+  - simulation
+image:
+  source: https://source.unsplash.com/_zFRhU7jqzc
+  legend:
+  reference:
+description: |
+  Une visualisation pour comprendre comment l'immunité collective fonctionne.
+---
+
+Bla
+
+haha
+
+<style>
+.healthy {
+  fill: gold;
+}
+
+.immune {
+  fill: steelblue;
+}
+
+.contagious {
+  fill: orangeRed;
+}
+
+.vaccinated {
+  fill: darkTurquoise;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+
+
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script src="/assets/js/utils.js"></script>
+<script src="/assets/js/particles.js"></script>
+
+<script src="/assets/js/charts/bars.js"></script>
+<script src="/assets/js/charts/simulation.js"></script>
+<script src="/assets/js/charts/summary.js"></script>
+
+<script src="/assets/js/charts/sliders.js"></script>
+
+<script src="https://unpkg.com/d3-simple-slider"></script>
+
+{% d3 test%}
+var totalWidth = .95 * window.innerWidth,
+			totalHeight = .95 * window.innerHeight;
+
+	var width = 600,
+			height = 400,
+			n = 200,
+			radius = 5,
+			speed = 1,
+			contagiousPeriod = 10,
+			contaminationRate = 1.,
+			initialContamination = 1,
+			vaccinationRate = 0;
+
+  d3.select("#test")
+    .selectAll("div")
+      .data(["controls", "canvas", "summary"])
+      .join("div")
+      .attr("id", d => d);
+
+	var controlCanvas = d3.select("#controls"),
+			simulationCanvas = d3.select("#canvas").append("svg").attr("class", "canvas"),
+			barCanvas = d3.select("#summary").append("svg").attr("class", "canvas"),
+			summaryCanvas = d3.select("#summary").append("svg").attr("class", "canvas");
+
+	var simulation = new Simulation(
+		width, height, n, radius, speed,
+		contagiousPeriod, contaminationRate,
+		initialContamination, vaccinationRate
+	);
+
+	updateR0s();
+
+	if (!document.URL.includes('no-controls')){
+
+		var contaminationRateSlider = namedSlider("contagiosité")
+				.value(contaminationRate)
+				.fill("orangeRed")
+				.step(.01)
+				.change(function(val) {
+					simulation.setContaminationRate(val);
+					updateR0s();
+				});
+		contaminationRateSlider(controlCanvas);
+
+		var contagiousPeriodSlider = namedSlider("durée d'infection")
+				.min(0)
+				.max(20)
+				.value(contagiousPeriod)
+				.step(1)
+				.fill("orangeRed")
+				.format(d3.format("d"))
+				.change(function(val) {
+					simulation.setContagiousPeriod(val);
+					updateR0s();
+				});
+		contagiousPeriodSlider(controlCanvas);
+
+		var vaccinationRateSlider = namedSlider("vaccination")
+				.value(vaccinationRate)
+				.fill("darkTurquoise")
+				.change(function(val) {
+					simulation.setVaccinationRate(val);
+					updateR0s();
+				});
+		vaccinationRateSlider(controlCanvas);
+
+		var relaunchButton = button("Relancer").on("replay()");
+		relaunchButton(controlCanvas);
+
+	} else {
+		d3.select("#r0s").remove();
+	}
+
+	var main = simulationChart()
+			.height(simulation.height)
+			.width(simulation.width);
+	var bars = barChart()
+			.width(3 * width / 10)
+			.height(2 * simulation.height / 5)
+			.offset(100);
+	var summary = summaryChart()
+			.width(7 * width / 10)
+			.height(2 * simulation.height / 5);
+
+	var timer = d3.timer(function(elapsed) {});
+
+	function replay(){
+		timer.stop();
+
+		simulation.initialise();
+		summary.reset();
+
+		barCanvas
+				.datum(simulation.states())
+				.call(bars);
+
+		summaryCanvas
+				.datum(simulation.states())
+				.call(summary);
+
+		timer.restart(function(elapsed) {
+
+			day = elapsed / DAY;
+			simulation.step(day);
+
+			simulationCanvas
+					.datum(simulation.particles)
+					.call(main);
+
+			bars.update(simulation.states());
+
+			summaryCanvas
+					.datum(simulation.states())
+					.call(summary);
+
+			if (simulation.states().contagious === 0){
+				timer.stop();
+			}
+		});
+	}
+
+	replay();
+{% endd3 %}
